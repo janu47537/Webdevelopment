@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <style>
+            @keyframes bounce {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+            .emoji-bounce {
+                display: inline-block;
+                animation: bounce 2s infinite;
+                font-size: 48px;
+            }
+            @keyframes bgColorChange {
+                0% { background-color: #f0f8ff; }
+                50% { background-color: #a0d8ef; }
+                100% { background-color: #f0f8ff; }
+            }
+            body {
+                animation: bgColorChange 10s infinite alternate;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="color:aqua;font-size: 40px;">
+            Hello <span class="emoji-bounce">😊</span>
+        </h1>
+        <h2 style="font-style: italic;text-align: center;">
+            Java Fullstack Development <span class="emoji-bounce">🚀</span>
+        </h2>
+        <h3 style="border:4px solid red;width:fit-content">
+            <p>This is a sample html structure. Html stands for hypertext markup language <span class="emoji-bounce">💻</span></p>
+        </h3>
+    </body>
+</html>
