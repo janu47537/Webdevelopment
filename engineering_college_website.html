@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mother Teressa Engineering College</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #1b0122;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header img {
+            width: 80px;
+            height: 80px;
+            vertical-align: middle;
+            border-radius: 50%;
+            border: 3px solid #fff;
+        }
+        header h1 {
+            display: inline-block;
+            margin-left: 15px;
+            font-size: 2rem;
+            vertical-align: middle;
+        }
+        nav {
+            background-color: #2c0039;
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            color: #fff;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #4b1a6b;
+        }
+        .marquee-container {
+            background-color: #e0d4f7;
+            color: #800000;
+            padding: 10px 0;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-container p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        main {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(27,1,34,0.2);
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        section h2 {
+            color: #1b0122;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #800000;
+            padding-bottom: 5px;
+        }
+        .courses-list, .faculty-list, .placements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .courses-list li, .faculty-list li, .placements-list li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-left: 5px solid #800000;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #1b0122;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        .contact-info {
+            line-height: 1.8;
+        }
+        a.external-link {
+            color: #800000;
+            text-decoration: underline;
+        }
+        a.external-link:hover {
+            color: #4b1a6b;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                padding: 10px;
+                border-top: 1px solid #4b1a6b;
+            }
+            nav a:first-child {
+                border-top: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="College Logo" />
+        <h1>Mother Teressa Engineering College</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#faculty">Faculty</a>
+        <a href="#placements">Placements</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="marquee-container" aria-label="Admissions announcement">
+        <p>Admissions are open from 20-05-2025 to 09-06-2025. Apply now!</p>
+    </div>
+    <main>
+        <section id="home">
+            <h2>Welcome to Mother Teressa Engineering College</h2>
+            <p>We are committed to providing quality education and fostering innovation in engineering and technology. Join us to build a bright future.</p>
+        </section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Mother Teressa Engineering College is a premier institution dedicated to excellence in engineering education. Established in 1990, we have a rich history of academic achievements and industry collaborations.</p>
+        </section>
+        <section id="courses">
+            <h2>Our Courses</h2>
+            <ul class="courses-list">
+                <li>Bachelor of Technology (B.Tech) in Computer Science Engineering</li>
+                <li>Bachelor of Technology (B.Tech) in Electronics and Communication Engineering</li>
+                <li>Bachelor of Technology (B.Tech) in Mechanical Engineering</li>
+                <li>Bachelor of Technology (B.Tech) in Civil Engineering</li>
+                <li>Master of Technology (M.Tech) in Computer Science</li>
+            </ul>
+        </section>
+        <section id="admissions">
+            <h2>Admissions</h2>
+            <p>Admissions for the academic year 2025-2026 are now open. Please visit our <a href="register.html" class="external-link">registration page</a> to apply online. For any queries, contact our admissions office.</p>
+        </section>
+        <section id="faculty">
+            <h2>Our Faculty</h2>
+            <ul class="faculty-list">
+                <li>Dr. A. Kumar - Head of Computer Science Department</li>
+                <li>Prof. S. Reddy - Electronics and Communication</li>
+                <li>Dr. M. Sharma - Mechanical Engineering</li>
+                <li>Prof. L. Singh - Civil Engineering</li>
+                <li>Dr. N. Patel - Research and Development</li>
+            </ul>
+        </section>
+        <section id="placements">
+            <h2>Placements</h2>
+            <ul class="placements-list">
+                <li>Google - Software Engineer</li>
+                <li>Microsoft - Systems Analyst</li>
+                <li>Infosys - Software Developer</li>
+                <li>TCS - IT Consultant</li>
+                <li>Wipro - Project Manager</li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p class="contact-info">
+                Address: 123 College Road, City, State, ZIP<br />
+                Phone: 0080-8088-84054<br />
+                Email: info@motherteressaengg.edu<br />
+                Website: <a href="https://www.motherteressaengg.edu" class="external-link" target="_blank" rel="noopener noreferrer">www.motherteressaengg.edu</a>
+            </p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Mother Teressa Engineering College. All rights reserved.
+    </footer>
+</body>
+</html>
