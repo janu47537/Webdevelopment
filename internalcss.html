@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style>
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            .emoji-rotate {
+                display: inline-block;
+                animation: rotate 4s linear infinite;
+                font-size: 48px;
+            }
+            @keyframes bgColorChange {
+                0% { background: linear-gradient(270deg, #ff6ec4, #7873f5); }
+                25% { background: linear-gradient(270deg, #42e695, #3bb2b8); }
+                50% { background: linear-gradient(270deg, #f7971e, #ffd200); }
+                75% { background: linear-gradient(270deg, #00c6ff, #0072ff); }
+                100% { background: linear-gradient(270deg, #ff6ec4, #7873f5); }
+            }
+            body {
+                animation: bgColorChange 20s ease infinite;
+                background-size: 400% 400%;
+                color: #61dafb;
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+            h1 {
+                color: #ffcc00;
+            }
+            .amar {
+                background-color: #007acc;
+                color: white;
+                padding: 10px;
+                border-radius: 8px;
+                display: inline-block;
+            }
+            #box {
+                color: black;
+                background-color: #f0db4f;
+                padding: 10px;
+                border-radius: 8px;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello <span class="emoji-rotate">🌟</span></h1>
+        <p class="amar">HI JANANI<span class="emoji-rotate">🔥</span></p>
+        <h1 id="box">Graj <span class="emoji-rotate">🎯</span></h1>
+    </body>
+</html>
