@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow: hidden;
+                background: black;
+                position: relative;
+                font-family: Arial, sans-serif;
+            }
+            .stars {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                pointer-events: none;
+                z-index: 0;
+                background: transparent;
+            }
+            .star {
+                position: absolute;
+                border-radius: 50%;
+                opacity: 0.8;
+                animation-name: twinkle;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+            }
+            @keyframes twinkle {
+                0%, 100% { opacity: 0.8; }
+                50% { opacity: 0.2; }
+            }
+            /* Different star sizes and colors */
+            .star.small {
+                width: 2px;
+                height: 2px;
+                background: #fff;
+                animation-duration: 2s;
+            }
+            .star.medium {
+                width: 3px;
+                height: 3px;
+                background: #ffcc00;
+                animation-duration: 3s;
+            }
+            .star.large {
+                width: 4px;
+                height: 4px;
+                background: #00ccff;
+                animation-duration: 4s;
+            }
+            /* Form container styling */
+            .form-container {
+                position: relative;
+                z-index: 1;
+                background: rgba(255, 255, 255, 0.85);
+                border-radius: 20px;
+                width: 500px;
+                margin: 60px auto;
+                padding: 20px 40px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                text-align: center;
+            }
+            label.p {
+                color: rgb(255, 0, 191);
+                font-size: 30px;
+                display: block;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            input.p {
+                width: 100%;
+                padding: 8px;
+                margin: 10px 0;
+                border: 2px solid rgb(203, 11, 11);
+                border-radius: 10px;
+                font-size: 16px;
+                box-sizing: border-box;
+            }
+            input.p[type="submit"] {
+                background-color: rgb(221, 249, 60);
+                color: rgb(255, 0, 191);
+                font-weight: bold;
+                cursor: pointer;
+                border: none;
+                transition: background-color 0.3s ease;
+            }
+            input.p[type="submit"]:hover {
+                background-color: rgb(203, 11, 11);
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="stars" id="stars"></div>
+        <div class="form-container">
+            <label class="p">Registration Form</label>
+            <form action="">
+                <input type="text" class="p" placeholder="Name" required>
+                <input type="email" class="p" placeholder="Email" required>
+                <input type="password" class="p" placeholder="Password" required>
+                <input type="password" class="p" placeholder="Confirm Password" required>
+                <input type="submit" class="p" value="Register">
+            </form>
+        </div>
+        <script>
+            // Generate stars dynamically
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+
+            function randomRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                // Randomly assign size class
+                const sizeRand = Math.random();
+                if (sizeRand < 0.6) {
+                    star.classList.add('small');
+                } else if (sizeRand < 0.9) {
+                    star.classList.add('medium');
+                } else {
+                    star.classList.add('large');
+                }
+                // Random position
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                // Random animation delay for twinkle effect
+                star.style.animationDelay = `${randomRange(0, 5)}s`;
+                starsContainer.appendChild(star);
+            }
+        </script>
+    </body>
+</html>
