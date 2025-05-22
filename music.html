@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music App - Spotify Like</title>
+  <style>
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #1db954, #191414, #1ed760, #121212);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: rgba(29, 185, 84, 0.85);
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      margin: 1rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header svg {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      overflow: hidden;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(0,0,0,0.3);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    #search-container {
+      margin-bottom: 1rem;
+    }
+    #search {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+    }
+    #playlist {
+      flex: 1;
+      overflow-y: auto;
+      border-radius: 10px;
+      background: #282828;
+      padding: 0.5rem;
+    }
+    .song {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      background: #121212;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .song:hover, .song.active {
+      background: #1db954;
+      color: #000;
+      box-shadow: 0 4px 8px rgba(29,185,84,0.7);
+    }
+    .song-title {
+      font-weight: bold;
+    }
+    .song-artist {
+      font-size: 0.9rem;
+      color: #b3b3b3;
+    }
+    #player-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 0;
+      background: #181818;
+      border-top: 1px solid #333;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    button {
+      background: none;
+      border: none;
+      color: #1db954;
+      font-size: 1.5rem;
+      margin: 0 1rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    button:hover {
+      color: #1ed760;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" aria-label="Spotify Logo" role="img">
+      <circle fill="#1ED760" cx="84" cy="84" r="84"/>
+      <path fill="#191414" d="M119.1 120.3c-1.7 2.7-5.3 3.5-7.9 1.8-21.5-13.3-48.6-16.3-80.4-8.8-3.1.7-6.1-1.3-6.8-4.4-.7-3.1 1.3-6.1 4.4-6.8 34.7-7.9 64.3-4.5 88.3 10.1 2.7 1.7 3.5 5.3 1.8 7.9zm11.3-22.1c-2.1 3.3-6.7 4.3-10 2.2-24.6-15.6-62.1-20.1-91.2-10.8-3.8 1.1-7.8-1.1-8.9-4.9-1.1-3.8 1.1-7.8 4.9-8.9 33.9-9.9 76.7-4.8 105.7 12.1 3.3 2.1 4.3 6.7 2.2 10zm.1-26.7c-28.2-17.2-74.9-18.8-102.3-10.1-4.5 1.3-9.3-1.4-10.6-5.9-1.3-4.5 1.4-9.3 5.9-10.6 31.9-9.3 83.1-7.4 115.1 11.3 4.1 2.5 5.6 8 3.1 12.1-2.5 4.1-8 5.6-12.1 3.2z"/>
+    </svg>
+    My Music App
+  </header>
+  <main>
+    <div id="search-container">
+      <input type="text" id="search" placeholder="Search songs..." />
+    </div>
+    <div id="playlist"></div>
+  </main>
+  <div id="player-controls">
+    <button id="prev" title="Previous">&#9664;&#9664;</button>
+    <button id="play" title="Play">&#9654;</button>
+    <button id="next" title="Next">&#9654;&#9654;</button>
+  </div>
+  <audio id="audio"></audio>
+
+  <script>
+    const songs = [
+      {
+        title: "Song One",
+        artist: "Artist A",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      },
+      {
+        title: "Song Two",
+        artist: "Artist B",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+      },
+      {
+        title: "Song Three",
+        artist: "Artist C",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      },
+      {
+        title: "Song Four",
+        artist: "Artist D",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+      },
+      {
+        title: "Movie Song One",
+        artist: "Movie Artist A",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+      },
+      {
+        title: "Movie Song Two",
+        artist: "Movie Artist B",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+      },
+      {
+        title: "Movie Song Three",
+        artist: "Movie Artist C",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+      }
+    ];
+
+    const playlistEl = document.getElementById('playlist');
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const searchInput = document.getElementById('search');
+
+    let currentIndex = 0;
+    let isPlaying = false;
+
+    function loadSong(index) {
+      const song = songs[index];
+      audio.src = song.url;
+      highlightActiveSong();
+    }
+
+    function playSong() {
+      audio.play();
+      isPlaying = true;
+      playBtn.innerHTML = '&#10073;&#10073;'; // pause icon
+    }
+
+    function pauseSong() {
+      audio.pause();
+      isPlaying = false;
+      playBtn.innerHTML = '&#9654;'; // play icon
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        pauseSong();
+      } else {
+        playSong();
+      }
+    }
+
+    function prevSong() {
+      currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+      loadSong(currentIndex);
+      playSong();
+    }
+
+    function nextSong() {
+      currentIndex = (currentIndex + 1) % songs.length;
+      loadSong(currentIndex);
+      playSong();
+    }
+
+    function highlightActiveSong() {
+      const songElements = document.querySelectorAll('.song');
+      songElements.forEach((el, idx) => {
+        if (idx === currentIndex) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    }
+
+    function renderPlaylist(filter = '') {
+      playlistEl.innerHTML = '';
+      const filteredSongs = songs.filter(song =>
+        song.title.toLowerCase().includes(filter.toLowerCase()) ||
+        song.artist.toLowerCase().includes(filter.toLowerCase())
+      );
+      filteredSongs.forEach((song, index) => {
+        const songEl = document.createElement('div');
+        songEl.classList.add('song');
+        songEl.innerHTML = `
+          <div>
+            <div class="song-title">${song.title}</div>
+            <div class="song-artist">${song.artist}</div>
+          </div>
+        `;
+        songEl.addEventListener('click', () => {
+          currentIndex = songs.indexOf(song);
+          loadSong(currentIndex);
+          playSong();
+        });
+        playlistEl.appendChild(songEl);
+      });
+      highlightActiveSong();
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      renderPlaylist(e.target.value);
+    });
+
+    playBtn.addEventListener('click', togglePlay);
+    prevBtn.addEventListener('click', prevSong);
+    nextBtn.addEventListener('click', nextSong);
+
+    audio.addEventListener('ended', nextSong);
+
+    // Initial load
+    loadSong(currentIndex);
+    renderPlaylist();
+  </script>
+</body>
+</html>
